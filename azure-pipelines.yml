@@ -32,3 +32,14 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: FortifyOnDemandStatic@7
+  inputs:
+    FortifyProjects: '.'
+    ReleaseId: 295892
+    FodConnection: 'FoD-AMS-W'
+    EntitlementPreference: '1'
+    InProgressScanActionType: '2'
+    RemediationScanPreference: '1'
+    PollingInterval: 0
+    PolicyFailAction: '0'
