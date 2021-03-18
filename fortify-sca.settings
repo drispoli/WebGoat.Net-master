@@ -1,0 +1,7 @@
+{
+  "translationArgs": [
+    "-exclude",
+    "/**/.xml"
+  ],
+  "scanArgs": []
+}
