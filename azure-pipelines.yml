@@ -49,3 +49,6 @@ steps:
     BuildFile: 'WebGoat.Net.sln'
     PolicyFailAction: '1'
 
+- task: PowerShell@2
+  inputs: 
+    script: Get-Content C:\Users\VssAdministrator\AppData\Local\Fortify\scancentral-21.1.2\log\scancentral.log -tail 1000
