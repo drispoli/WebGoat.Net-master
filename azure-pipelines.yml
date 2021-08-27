@@ -33,13 +33,17 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: FortifyOnDemandStatic@7
+- task: FortifyOnDemandStatic@8
   inputs:
     FortifyProjects: '.'
-    ReleaseId: 295892
     FodConnection: 'FoD-AMS-W'
+    ReleaseOptions: '0'
+    ReleaseId: 295892
+    EntitlementSelection: '1'
     EntitlementPreference: '1'
+    OverrideScanSettings: '2'
     InProgressScanActionType: '2'
     RemediationScanPreference: '2'
-    PollingInterval: 0
+    BuildType: 'msbuild'
     PolicyFailAction: '0'
+
