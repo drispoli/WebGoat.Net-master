@@ -46,6 +46,6 @@ steps:
     InProgressScanActionType: '2'
     RemediationScanPreference: '2'
     BuildType: 'msbuild'
-    BuildFile: 'D:\a\1\s\WebGoat.Net.sln'
+    BuildFile: 'WebGoat.Net.sln'
     PolicyFailAction: '1'
 
