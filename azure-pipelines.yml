@@ -47,7 +47,8 @@ steps:
     RemediationScanPreference: '2'
     BuildType: 'msbuild'
     BuildFile: 'WebGoat.Net.sln'
-    PolicyFailAction: '1'
+    BuildCommand: '/t:Rebuild /p:Configuration=$(buildConfiguration);Platform=""$(buildPlatform)""'
+    PolicyFailAction: '0'
 
 - task: PowerShell@2
   inputs:
