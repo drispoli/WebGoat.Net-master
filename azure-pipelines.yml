@@ -50,6 +50,9 @@ steps:
     PolicyFailAction: '1'
 
 - task: PowerShell@2
-  inputs: 
-    targetType: inline
-    script: Get-Content C:\Users\VssAdministrator\AppData\Local\Fortify\scancentral-21.1.2\log\scancentral.log -tail 1000
+  inputs:
+    targetType: 'inline'
+    script: |
+      echo Running:
+      echo "Get-Content $env:LocalAppData\Fortify\scancentral-21.1.2\log\scancentral.log"
+      Get-Content $env:LocalAppData\Fortify\scancentral-21.1.2\log\scancentral.log
