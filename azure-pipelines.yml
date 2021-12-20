@@ -34,26 +34,28 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: FortifyOnDemandStatic@8
-  inputs:
-    FortifyProjects: '.'
-    FodConnection: 'FoD-AMS-W'
-    ReleaseOptions: '0'
-    ReleaseId: 295892
-    EntitlementSelection: '1'
-    EntitlementPreference: '3'
-    OverrideScanSettings: '2'
-    InProgressScanActionType: '2'
-    RemediationScanPreference: '2'
-    BuildType: 'msbuild'
-    BuildFile: 'WebGoat.Net.sln'
-    BuildCommand: '/t:Rebuild /p:Configuration=$(buildConfiguration);Platform=""$(buildPlatform)""'
-    PolicyFailAction: '0'
 
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      echo Running:
-      echo "Get-Content $env:LocalAppData\Fortify\scancentral-21.1.2\log\scancentral.log"
-      Get-Content $env:LocalAppData\Fortify\scancentral-21.1.2\log\scancentral.log
+
+#- task: FortifyOnDemandStatic@8
+#  inputs:
+#    FortifyProjects: '.'
+#    FodConnection: 'FoD-AMS-W'
+#    ReleaseOptions: '0'
+#    ReleaseId: 295892
+#    EntitlementSelection: '1'
+#    EntitlementPreference: '3'
+#    OverrideScanSettings: '2'
+#    InProgressScanActionType: '2'
+#    RemediationScanPreference: '2'
+#    BuildType: 'msbuild'
+#    BuildFile: 'WebGoat.Net.sln'
+#    BuildCommand: '/t:Rebuild /p:Configuration=$(buildConfiguration);Platform=""$(buildPlatform)""'
+#    PolicyFailAction: '0'
+
+#- task: PowerShell@2
+#  inputs:
+#    targetType: 'inline'
+#    script: |
+#      echo Running:
+#      echo "Get-Content $env:LocalAppData\Fortify\scancentral-21.1.2\log\scancentral.log"
+#      Get-Content $env:LocalAppData\Fortify\scancentral-21.1.2\log\scancentral.log
