@@ -34,7 +34,19 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-
+- task: FortifyOnDemandStatic@8
+  inputs:
+    FortifyProjects: '.'
+    FodConnection: 'FoD-AMS-W'
+    ReleaseOptions: '0'
+    ReleaseId: 295892
+    EntitlementSelection: '1'
+    EntitlementPreference: '1'
+    OverrideScanSettings: '2'
+    InProgressScanActionType: '2'
+    RemediationScanPreference: '2'
+    BuildType: 'msbuild'
+    PolicyFailAction: '0'
 
 #- task: FortifyOnDemandStatic@8
 #  inputs:
@@ -49,7 +61,7 @@ steps:
 #    RemediationScanPreference: '2'
 #    BuildType: 'msbuild'
 #    BuildFile: 'WebGoat.Net.sln'
-#    BuildCommand: '/t:Rebuild /p:Configuration=$(buildConfiguration);Platform=""$(buildPlatform)""'
+
 #    PolicyFailAction: '0'
 
 #- task: PowerShell@2
