@@ -46,6 +46,7 @@ steps:
     InProgressScanActionType: '2'
     RemediationScanPreference: '2'
     BuildType: 'msbuild'
+    BuildFile: 'WebGoat.Net.sln'
     PolicyFailAction: '0'
 
 #- task: FortifyOnDemandStatic@8
