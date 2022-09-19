@@ -45,10 +45,10 @@ jobs:
       # Java is required to run the various Fortify utilities.
       # When scanning a Java application, please use the appropriate Java version for building your application.
       - name: Setup Java
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v1
         with:
-          java-version: 8
-          distribution: 'temurin'
+          java-version: 11
+          #distribution: 'temurin'
 
       # Prepare source+dependencies for upload. The default example is for a Maven project that uses pom.xml.
       # TODO: Update PACKAGE_OPTS based on the ScanCentral Client documentation for your project's included tech stack(s). Helpful hints:
@@ -58,7 +58,9 @@ jobs:
       #   For other build tools, add your build commands to download necessary dependencies and prepare according to Fortify on Demand Packaging documentation.
       #   ScanCentral Client documentation is located at https://www.microfocus.com/documentation/fortify-software-security-center/
       - name: Download Fortify ScanCentral Client
-        uses: fortify/gha-setup-scancentral-client@5b7382f8234fb9840958c49d5f32ae854115f9f3
+        uses: fortify/gha-setup-scancentral-client@v1.2.0   
+        with:
+          version: 22.1.0 
       - name: Package Code + Dependencies
         run: scancentral package $env:PACKAGE_OPTS -o package.zip
         env:
