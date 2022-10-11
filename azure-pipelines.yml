@@ -7,8 +7,8 @@ trigger:
 - master
 
 #pool:
-#  vmImage: 'windows-latest'
-pool: Default
+vmImage: 'windows-latest'
+# pool: Default
 
 variables:
   solution: '**/*.sln'
@@ -34,6 +34,12 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: JavaToolInstaller@0
+  inputs:
+    versionSpec: '11'
+    jdkArchitectureOption: 'x64'
+    jdkSourceOption: 'PreInstalled'
+    
 - task: FortifyOnDemandStatic@8
   inputs:
     FortifyProjects: '.'
