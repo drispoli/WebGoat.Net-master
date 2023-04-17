@@ -42,7 +42,7 @@ steps:
     
 - task: FortifyScanCentralSAST@7
   inputs:
-    scanCentralCtrlUrl: 'http://10.229.222.183:8999/scancentral-ctrl/'
+    scanCentralCtrlUrl: 'http://10.229.222.183:8999/scancentral-ctrl'
     scanCentralClientToken: '$(ScanCentral.ClientToken)'
     sscUrl: 'http://10.229.222.183:8180/ssc/'
     sscCiToken: '$(ScanCentral.SscCiToken)'
