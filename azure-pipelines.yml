@@ -40,22 +40,22 @@ steps:
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
     
-- task: FortifyOnDemandStatic@8
-  env:
-    PATH: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\;$env:PATH
-  inputs:
-    FortifyProjects: '.'
-    FodConnection: 'FoD-AMS-W'
-    ReleaseOptions: '0'
-    ReleaseId: 295892
-    EntitlementSelection: '1'
-    EntitlementPreference: '1'
-    OverrideScanSettings: '2'
-    InProgressScanActionType: '2'
-    RemediationScanPreference: '2'
-    BuildType: 'msbuild'
-    BuildFile: 'WebGoat.Net.sln'
-    PolicyFailAction: '0'
+#- task: FortifyOnDemandStatic@8
+#  env:
+#    PATH: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\MSBuild\Current\Bin\;$env:PATH
+#  inputs:
+#    FortifyProjects: '.'
+#    FodConnection: 'FoD-AMS-W'
+#    ReleaseOptions: '0'
+#    ReleaseId: 295892
+#    EntitlementSelection: '1'
+#    EntitlementPreference: '1'
+#    OverrideScanSettings: '2'
+#    InProgressScanActionType: '2'
+#    RemediationScanPreference: '2'
+#    BuildType: 'msbuild'
+#    BuildFile: 'WebGoat.Net.sln'
+#    PolicyFailAction: '0'
 
 #- task: FortifyOnDemandStatic@8
 #  inputs:
