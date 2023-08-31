@@ -62,12 +62,12 @@ jobs:
         with:
           version: 23.1.0 
       - name: Package Code + Dependencies
-        run: scancentral package $env:PACKAGE_OPTS -o package.zip #added open source scanning option
+        if: always()
+        run: scancentral package $env:PACKAGE_OPTS -o package.zip             
         env:
           PACKAGE_OPTS: "-bt msbuild -bf WebGoat.Net.sln"
       - name: SC Packager log
-        run: more C:\Users\runneradmin\AppData\Local\Fortify\scancentral-23.1.0\log\scancentral.log
-
+        run: more C:\Users\runneradmin\AppData\Local\Fortify\scancentral-23.1.0\log\scancentral.log        
       # Start Fortify on Demand SAST scan and wait until results complete. For more information on FoDUploader commands, see https://github.com/fod-dev/fod-uploader-java
       # TODO: Update ENV variables for your application and create the necessary GitHub Secrets.  Helpful hints:
       #   Credentials and release ID should be obtained from your FoD tenant (either Personal Access Token or API Key can be used).
