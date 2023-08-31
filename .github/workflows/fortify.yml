@@ -67,7 +67,8 @@ jobs:
         with:
           version: 23.1.0 
       - name: Package Code + Dependencies
-        run: scancentral package $env:PACKAGE_OPTS -o package.zip             
+        run: scancentral.bat package -bt msbuild -bf WebGoat.Net.sln -o pack.zip
+        # run: scancentral package $env:PACKAGE_OPTS -o package.zip             
         env:
           PACKAGE_OPTS: "-bt msbuild -bf WebGoat.Net.sln"
       - name: SC Packager log
