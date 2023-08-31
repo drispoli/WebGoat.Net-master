@@ -28,6 +28,9 @@
     <TargetFrameworkProfile />
     <Use64BitIISExpress />
   </PropertyGroup>
+<PropertyGroup>
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+</PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
