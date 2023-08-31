@@ -58,40 +58,44 @@ jobs:
       #   For other build tools, add your build commands to download necessary dependencies and prepare according to Fortify on Demand Packaging documentation.
       #   ScanCentral Client documentation is located at https://www.microfocus.com/documentation/fortify-software-security-center/
       - name: Download Fortify ScanCentral Client
-        uses: fortify/gha-setup-scancentral-client@v1.2.0   
+        uses: fortify/gha-setup-scancentral-client@v1   
         with:
-          version: 22.1.0 
+          version: 23.1.0 
       - name: Package Code + Dependencies
-        run: scancentral package $env:PACKAGE_OPTS -o package.zip
+        run: scancentral package $env:PACKAGE_OPTS -o package.zip #added open source scanning option
         env:
-          PACKAGE_OPTS: "-bt msbuild"
+          PACKAGE_OPTS: "-bt msbuild -oss"
 
       # Start Fortify on Demand SAST scan and wait until results complete. For more information on FoDUploader commands, see https://github.com/fod-dev/fod-uploader-java
       # TODO: Update ENV variables for your application and create the necessary GitHub Secrets.  Helpful hints:
       #   Credentials and release ID should be obtained from your FoD tenant (either Personal Access Token or API Key can be used).
       #   Automated Audit preference should be configured for the release's Static Scan Settings in the Fortify on Demand portal.
       - name: Download Fortify on Demand Universal CI Tool
-        uses: fortify/gha-setup-fod-uploader@6e6bb8a33cb476e240929fa8ebc739ff110e7433
+        uses: fortify/gha-setup-fod-uploader@v1
       - name: Perform SAST Scan
-        run: java -jar "$env:$FOD_UPLOAD_JAR" -z package.zip -aurl "$env:FOD_API_URL" -purl "$env:FOD_URL" -rid "$env:FOD_RELEASE_ID" -tc "$env:FOD_TENANT" -uc "$env:FOD_USER" "$env:FOD_PAT" "$env:FOD_UPLOADER_OPTS" -n "$FOD_UPLOADER_NOTES"
+        run: java -jar "$env:$FOD_UPLOAD_JAR" -z package.zip -aurl "$env:FOD_API_URL" -purl "$env:FOD_URL" -rid "$env:FOD_RELEASE_ID" -tc "$env:FOD_TENANT" -ac "$env:FOD_API_KEY" "$env:FOD_API_SECRET" "$env:FOD_UPLOADER_OPTS" -n "$FOD_UPLOADER_NOTES"
         env:
           FOD_URL: "https://ams.fortify.com/"
           FOD_API_URL: "https://api.ams.fortify.com/"
-          FOD_TENANT: ${{ secrets.FOD_TENANT }}
-          FOD_USER: ${{ secrets.FOD_USER }}
-          FOD_PAT: ${{ secrets.FOD_PAT }}
+          #FOD_TENANT: ${{ secrets.FOD_TENANT }}
+          #FOD_USER: ${{ secrets.FOD_USER }}
+          #FOD_PAT: ${{ secrets.FOD_PAT }}
+          FOD_API_KEY: ${{ secrets.FOD_API_KEY }}
+          FOD_API_SECRET: ${{ secrets.FOD_API_SECRET }}
           FOD_RELEASE_ID: ${{ secrets.FOD_RELEASE_ID }}
-          FOD_UPLOADER_OPTS: "-ep 2 -pp 0 -I 1 -apf"
+          FOD_UPLOADER_OPTS: "-ep 2 -pp 0 -I 1 -apf -os" #added open source scanning option
           FOD_UPLOADER_NOTES: 'Triggered by GitHub Actions (${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})'
 
       # Once scan completes, pull SAST issues from Fortify on Demand and generate SARIF output.
       - name: Export results to GitHub-optimized SARIF
-        uses: fortify/gha-export-vulnerabilities@fcb374411cff9809028c911dabb8b57dbdae623b
+        uses: fortify/gha-export-vulnerabilities@v1
         with:
           fod_base_url: "https://ams.fortify.com/"
-          fod_tenant: ${{ secrets.FOD_TENANT }}
-          fod_user: ${{ secrets.FOD_USER }}
-          fod_password: ${{ secrets.FOD_PAT }}
+          #fod_tenant: ${{ secrets.FOD_TENANT }}
+          #fod_user: ${{ secrets.FOD_USER }}
+          #fod_password: ${{ secrets.FOD_PAT }}
+          fod_client_id: ${{ secrets.FOD_API_KEY }}
+          fod_client_secret: ${{ secrets.FOD_API_SECRET }}
           fod_release_id: ${{ secrets.FOD_RELEASE_ID }}
 
       # Import Fortify on Demand results to GitHub Security Code Scanning
