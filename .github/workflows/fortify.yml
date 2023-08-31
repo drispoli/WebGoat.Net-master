@@ -64,7 +64,7 @@ jobs:
       - name: Package Code + Dependencies
         run: scancentral package $env:PACKAGE_OPTS -o package.zip #added open source scanning option
         env:
-          PACKAGE_OPTS: "-bt msbuild -bf WebGoat.Net.sln -oss"
+          PACKAGE_OPTS: "-bt msbuild -bf WebGoat.Net.sln"
 
       # Start Fortify on Demand SAST scan and wait until results complete. For more information on FoDUploader commands, see https://github.com/fod-dev/fod-uploader-java
       # TODO: Update ENV variables for your application and create the necessary GitHub Secrets.  Helpful hints:
