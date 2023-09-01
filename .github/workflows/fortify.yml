@@ -75,9 +75,9 @@ jobs:
         #run: scancentral.bat package "$env:PACKAGE_OPTS" -o package.zip             
         env:
           PACKAGE_OPTS: "-bt msbuild -bf WebGoat.Net.sln"
-      - name: SC Packager log
-        if: always()
-        run: more C:\Users\runneradmin\AppData\Local\Fortify\scancentral-23.1.0\log\scancentral.log
+      #- name: SC Packager log
+      #  if: always()
+      #  run: more C:\Users\runneradmin\AppData\Local\Fortify\scancentral-23.1.0\log\scancentral.log
         
       # Start Fortify on Demand SAST scan and wait until results complete. For more information on FoDUploader commands, see https://github.com/fod-dev/fod-uploader-java
       # TODO: Update ENV variables for your application and create the necessary GitHub Secrets.  Helpful hints:
