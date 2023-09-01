@@ -11,6 +11,12 @@
 # assistance with configuration, feel free to create a help ticket in the Fortify on Demand portal.                                            #
 ################################################################################################################################################
 
+# In order to enable the open source scanning, .NET projects require a packages.lock.json file added to the FoD Payload.
+# Please include the following property on the .csproj file for your .NET project
+# <PropertyGroup>
+#  <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+# </PropertyGroup>
+
 name: Fortify on Demand Scan
 
 # TODO: Customize trigger events based on your DevSecOps processes and typical FoD SAST scan time
