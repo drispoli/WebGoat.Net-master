@@ -18,7 +18,7 @@ jobs:
         uses: fortify/github-action@v1
         with:
           sast-scan: true
-          # debricked-sca-scan: true
+          debricked-sca-scan: true
         env:
           FOD_URL: https://ams.fortify.com
           #FOD_TENANT: ${{secrets.FOD_TENANT}}
@@ -27,15 +27,16 @@ jobs:
           FOD_CLIENT_ID: ${{secrets.FOD_API_KEY}}
           FOD_CLIENT_SECRET: ${{secrets.FOD_API_SECRET}}
           # FOD_LOGIN_EXTRA_OPTS: --socket-timeout=60s
-          FOD_RELEASE: drispoli/WebGoat:${{ github.event.repository.default_branch }}
+          FOD_RELEASE: ${{ github.repository }}:${{ github.event.repository.default_branch }}
           DO_SETUP: true
           # SETUP_ACTION: https://scm.my.org/shared-repos/fcli-actions/setup.yaml
+          SETUP_EXTRA_OPTS: --app-owner ddcarvalhori #--aviator 
           # SETUP_EXTRA_OPTS: --copy-from "${{ github.repository }}:${{ github.event.repository.default_branch }}"
           SC_CLIENT_VERSION: 24.4
           # DO_PACKAGE_DEBUG: true
           # PACKAGE_EXTRA_OPTS: -oss -bt mvn
           # FOD_SAST_SCAN_EXTRA_OPTS:
-          # DO_WAIT: true
+          DO_WAIT: true
           # DO_POLICY_CHECK: true
           # POLICY_CHECK_ACTION: https://scm.my.org/shared-repos/fcli-actions/check-policy.yaml
           # POLICY_CHECK_EXTRA_OPTS: --on-unsigned=ignore
