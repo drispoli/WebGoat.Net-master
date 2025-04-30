@@ -30,7 +30,7 @@ jobs:
           FOD_RELEASE: ${{ github.repository }}:${{ github.event.repository.default_branch }}
           DO_SETUP: true
           # SETUP_ACTION: https://scm.my.org/shared-repos/fcli-actions/setup.yaml
-          SETUP_EXTRA_OPTS: --app-owner ddcarvalhori #--aviator 
+          SETUP_EXTRA_OPTS: --app-owner dripoli #--aviator 
           # SETUP_EXTRA_OPTS: --copy-from "${{ github.repository }}:${{ github.event.repository.default_branch }}"
           SC_CLIENT_VERSION: 24.4
           # DO_PACKAGE_DEBUG: true
